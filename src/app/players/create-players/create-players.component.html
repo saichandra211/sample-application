@@ -1,0 +1,107 @@
+<form #playerForm="ngForm" (ngSubmit)="savePlayer()">
+    <div class="container">
+        <div class="panel panel-primary">
+            <div class="panel-heading panelHeading">
+                <h3 class="panel-title">Create Player</h3>
+            </div>
+            <div class="panel-body">
+                <div class="form-group" [class.has-error]="name.invalid && name.touched"
+                [class.has-success]="name.valid">
+                    <label for="name" class="control-label">Name</label>
+                    <input id="name" type="text" name="name" [(ngModel)]="player.name" class="form-control"
+                    #name="ngModel" required>
+                    <span class="help-block" *ngIf="name.invalid && name.touched">
+                        Full name is required    
+                    </span>
+                </div>
+                <div class="form-group" [class.has-error]="role.invalid && role.touched"
+                [class.has-success]="role.valid">
+                    <label for="role" class="control-label">Role</label>
+                    <input id="role" type="text" name="role" [(ngModel)]="player.role" class="form-control"
+                    required #role="ngModel" >
+                    <span class="help-block" *ngIf="role.invalid && role.touched">
+                        role is required    
+                    </span>
+                </div>
+                <div class="form-group" [class.has-error]="gender.invalid && gender.touched"
+                [class.has-success]="gender.valid">
+                    <label for="gender" class="control-label">Gender</label>
+                    <div class="form-control">
+                        <label class="radio-inline">
+                            <input type="radio" value="male" name="gender" [(ngModel)]="player.gender"
+                            required #gender="ngModel">
+                            Male
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" value="Female" name="gender" [(ngModel)]="player.gender"
+                            required #gender="ngModel">
+                            Female
+                        </label>
+                    </div>
+                    <span class="help-block" *ngIf="gender.invalid && gender.touched">
+                        gender is required    
+                    </span>
+                </div>
+
+                <div class="form-group" [class.has-error]="matches.invalid && matches.touched"
+                [class.has-success]="matches.valid">
+                    <label for="matches" class="control-label">Matches Played</label>
+                    <input id="matches" type="number" name="matches" [(ngModel)]="player.matches" class="form-control"
+                    required #matches="ngModel">
+                    <span class="help-block" *ngIf="matches.invalid && matches.touched">
+                        matches played is required    
+                    </span>
+                </div>
+
+                <div class="form-group" [class.has-error]="runs.invalid && runs.touched"
+                [class.has-success]="runs.valid">
+                    <label for="runs" class="control-label">Runs Scored</label>
+                    <input id="runs" type="number" name="runs" [(ngModel)]="player.runs" class="form-control"
+                    required #runs="ngModel">
+                    <span class="help-block" *ngIf="runs.invalid && runs.touched">
+                        runs scored is required    
+                    </span>
+                </div>
+                <div class="form-group" [class.has-error]="team.invalid && team.touched"
+                [class.has-success]="team.valid">
+                    <label for="teams" class="control-label">Team</label>
+                    <select id="teams" name="teams" [(ngModel)]="player.teams" class="form-control"
+                    required #team="ngModel">
+                        <option [ngValue]="null" disabled>select team</option>
+                        <option *ngFor="let team of teams" [value]="team.id">
+                            {{team.teamName}}
+                        </option>
+                    </select>
+                    <span class="help-block" *ngIf="team.invalid && team.touched">
+                        team is required    
+                    </span>
+                </div>
+                <div class="form-group" [class.has-error]="image.invalid && image.touched"
+                [class.has-success]="image.valid">
+                    <label for="image">Player Image</label>
+                    <input id="image" type="text" name="image" [(ngModel)]="player.image" class="form-control"
+                    required #image="ngModel">
+                    <span class="help-block" *ngIf="image.invalid && image.touched">
+                        image is required    
+                    </span>
+                </div>
+
+                <div class="form-group">
+                    <button type="button" class="btn btn-primary" (click)="togglePhotoPreview()">
+                      {{ previewImage? "Hide" : "Show"}} Preview
+                    </button>
+                </div>
+
+                <div class="form-group">
+                    <img [src]="player.image" *ngIf="previewImage"/>
+                </div>
+            </div>
+            <div class="panel-footer">
+                <button type="submit" class="btn btn-primary" [disabled]="playerForm.invalid">Save</button>
+                <button type="button" class="btn btn-warning rst" (click)="playerForm.resetForm()">Reset</button>
+            </div>
+        </div>
+    </div>
+</form>
+
+

@@ -1,0 +1,68 @@
+<div class="container">
+    <div class="panel panel-primary" *ngFor="let player of players" >
+        <div class="panel-heading panelHeading">
+            <h3 class="panel-title">{{player.name}}</h3>
+        </div>
+        <div class="panel-body">
+            <div class="col-xs-10">
+                <div class="row">
+                    <div class="col-xs-4">
+                        <img [src]="player.image" />
+                    </div>
+                    <div class="col-xs-8">
+                        <div class="row">
+                            <div class="col-xs-6">
+                                Gender
+                            </div>
+                            <div class="col-xs-6">
+                                : {{player.gender}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                Matches
+                            </div>
+                            <div class="col-xs-6">
+                                : {{player.matches}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                Role
+                            </div>
+                            <div class="col-xs-6">
+                                : {{player.role}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                Runs
+                            </div>
+                            <div class="col-xs-6">
+                                : {{player.runs}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                Teams
+                            </div>
+                            <div class="col-xs-6" [ngSwitch]="player.teams">
+                                :
+                                <span *ngSwitchCase="1">India</span>
+                                <span *ngSwitchCase="2">Pakistan</span>
+                                <span *ngSwitchCase="3">Sri Lanka</span>
+                                <span *ngSwitchCase="4">West Indies</span>
+                                <span *ngSwitchCase="5">Afghanisthan</span>
+                                <span *ngSwitchCase="6">Bangladesh</span>
+                                <span *ngSwitchCase="7">Australia</span>
+                                <span *ngSwitchCase="8">New zealand</span>
+                                <span *ngSwitchCase="9">South Africa</span>
+                                <span *ngSwitchCase="10">England</span>
+                                <span *ngSwitchDefault>N/A</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
